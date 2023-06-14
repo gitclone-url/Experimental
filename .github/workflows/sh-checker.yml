@@ -16,6 +16,3 @@ jobs:
           sh_checker_comment: true
           sh_checker_exclude: "README.md" "New file.txt" "Testing"
           sh_checker_checkbashisms_enable: true
-        runs:
-          using: "docker"
-          image: "Dockerfile"
