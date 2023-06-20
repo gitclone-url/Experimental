@@ -7,6 +7,13 @@
 
 using namespace std;
 
+// Declare functions.
+void mem_preload_tweak();
+void cmd_services_tweak();
+void main_dex_tweak();
+void secondary_dex_tweak();
+void apply_all_tweaks();
+
 // Tweak to preload important system objects into memory.
 void mem_preload_tweak() {
   vector<string> apex_objects = {
