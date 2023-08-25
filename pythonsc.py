@@ -28,8 +28,17 @@ def main():
     print("")
     print("                      - 𝙼𝚊𝚍𝚎 𝚋𝚢 𝙰𝚋𝚑𝚒𝚓𝚎𝚎𝚝")
     print("      *************************************************")
-    print("")
+    print("________________________________________________________________")
+    # Update and upgrade Termux packages
+    print_info("Updating and upgrading Termux packages...")
+    update_upgrade_cmd = ["apt update && apt upgrade -y"]
+    try:
+        subprocess.check_call(update_upgrade_cmd, stderr=subprocess.STDOUT, text=True, shell=True)
+    except subprocess.CalledProcessError:
+        print_error("Package update and upgrade failed. Please check your internet connection and try again.")
+        sys.exit(1)
     print("----------------------------")
+    time.sleep(1)
     try:
         python2_version = subprocess.check_output(["python2", "--version"], stderr=subprocess.STDOUT, text=True).strip()
         print_info("Python 2 is already installed.")
@@ -43,6 +52,7 @@ def main():
             sys.exit(1)
         print_success("Python 2 installed successfully.")
     print("----------------------------------")
+    time.sleep(1)
     try:
         openssl_version = subprocess.check_output(["openssl", "version"], stderr=subprocess.STDOUT, text=True).strip()
         print_info("OpenSSL Tool is already installed.")
@@ -55,19 +65,30 @@ def main():
             print_error("OpenSSL Tool installation failed.")
             sys.exit(1)
         print_success("OpenSSL Tool installed successfully.")
-    
+    time.sleep(1)
     print("--------------------------------------")
     print_info("Checking Boot image info, please wait...")
     print("------------------------------------------")
-    time.sleep(3)
+    time.sleep(5)
     print("")
     try:
         output = subprocess.check_output(["python2", "avbtool", "info_image", "--image", "boot.img"], stderr=subprocess.STDOUT, text=True)
     except subprocess.CalledProcessError as e:
-        print_error("Failed to check 'boot image info!'. Please make sure the 'boot.img' file is placed in the folder.")
-        print_error("Error:", e.output)
-        sys.exit(1)
-
+        error_output = e.output
+        if "No such file or directory: 'boot.img'" in error_output:
+            print_error("Failed to check 'boot image info!'. Please make sure the 'boot.img' file is placed in the folder.")
+            sys.exit(1)
+        elif "Given image does not look like a vbmeta image" in error_output:
+             print_error("Failed to check 'boot image info!'.The image you have provided does not look like a boot image.")
+             print("")
+             print("Possible reason: corrupted/broken or not in currect boot image format.")
+             sys.exit(1)
+        else:
+            print(error_output)  # Print the complete error output for debugging
+            print_error("Failed to check 'boot image info!")
+            sys.exit(1)
+            
+    output =""
     lines = output.splitlines()
     fingerprint = None
     for line in lines:
@@ -91,17 +112,17 @@ def main():
         "--prop", "com.android.build.boot.os_version:11"
     ]
     try:
-         output = subprocess.check_output(cmd, stderr=subprocess.STDOUT, text=True)
-  except subprocess.CalledProcessError as e:
-         error_output = e.output
-         if "avbtool:" in error_output:
-         print_error("Error:", error_output)
-         sys.exit(1)
+        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT, text=True)
+    except subprocess.CalledProcessError as e:
+        error_output = e.output
+        if "avbtool:" in error_output:
+            print_error("Error:", error_output)
+        sys.exit(1)
     else:
         print("")
         print("Done ✅")
-        print("___________________________________________________________")
-
+        print("________________________________________________________________")
+    
         message = "Boot image signing done! You can now flash the signed boot Image to your phone."
         length = len(message)
         print("-" * length)
