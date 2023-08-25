@@ -10,8 +10,29 @@ def print_error(message):
 def print_success(message):
     print("\033[32m{}\033[0m".format(message))
 
-def print_info(message):
-    print("\033[34m{}\033[0m".format(message))
+def print_info(title, message=None):
+    color_code = "34"
+    colored_title = f"\033[{color_code}m{title}\033[0m"
+    colored_text = f"{colored_title} {message}" if message else colored_title
+    print(colored_text)
+
+def print_colored(text, color_code):
+    colored_text = f"\033[{color_code}m{text}\033[0m"
+    print(colored_text)
+
+def check_package_installed(package_name):
+    try:
+        output = subprocess.check_output(["pkg", "list-installed"], stderr=subprocess.DEVNULL, text=True)
+        return package_name in output
+    except subprocess.CalledProcessError:
+        return False
+
+def install_package(package_name):
+    print_info(f"{package_name} is not installed. Installing...")
+    if subprocess.call(["pkg", "install", package_name, "-y"], stderr=subprocess.STDOUT) != 0:
+        print_error(f"{package_name} installation failed.")
+        sys.exit(1)
+    print_success(f"{package_name} installed successfully.")
 
 def main():
     print("      *********************000 of 000******************")
@@ -29,7 +50,7 @@ def main():
     print("                      - 𝙼𝚊𝚍𝚎 𝚋𝚢 𝙰𝚋𝚑𝚒𝚓𝚎𝚎𝚝")
     print("      *************************************************")
     print("________________________________________________________________")
-    # Update and upgrade Termux packages
+
     print_info("Updating and upgrading Termux packages...")
     update_upgrade_cmd = ["apt update && apt upgrade -y"]
     try:
@@ -37,40 +58,31 @@ def main():
     except subprocess.CalledProcessError:
         print_error("Package update and upgrade failed. Please check your internet connection and try again.")
         sys.exit(1)
-    print("----------------------------")
+    
     time.sleep(1)
-    try:
+    print("-------------------------------------")
+    if not check_package_installed("python2"):
+        install_package("python2")
+    else:
         python2_version = subprocess.check_output(["python2", "--version"], stderr=subprocess.STDOUT, text=True).strip()
         print_info("Python 2 is already installed.")
-        print_info("Python Version: {}".format(python2_version))
-    except subprocess.CalledProcessError:
-        print_info("Python 2 is not installed. Installing...")
-        try:
-            subprocess.check_call(["pkg", "install", "python2", "-y"])
-        except subprocess.CalledProcessError:
-            print_error("Python 2 installation failed.")
-            sys.exit(1)
-        print_success("Python 2 installed successfully.")
-    print("----------------------------------")
+        print_info("Python2 version:", python2_version)
+    print("-------------------------------------")
+    
     time.sleep(1)
-    try:
-        openssl_version = subprocess.check_output(["openssl", "version"], stderr=subprocess.STDOUT, text=True).strip()
+    
+    if not check_package_installed("openssl-tool"):
+        install_package("openssl-tool")
+    else:
         print_info("OpenSSL Tool is already installed.")
-        print_info("OpenSSL Version: {}".format(openssl_version.split()[1]))
-    except subprocess.CalledProcessError:
-        print_info("OpenSSL Tool is not installed. Installing...")
-        try:
-            subprocess.check_call(["pkg", "install", "openssl-tool", "-y"])
-        except subprocess.CalledProcessError:
-            print_error("OpenSSL Tool installation failed.")
-            sys.exit(1)
-        print_success("OpenSSL Tool installed successfully.")
+        openssl_version = subprocess.check_output(["openssl", "version"], stderr=subprocess.STDOUT, text=True).strip()
+        print_info("OpenSSL version:", openssl_version.split()[1])
+
+    print("-------------------------------------")
     time.sleep(1)
-    print("--------------------------------------")
     print_info("Checking Boot image info, please wait...")
-    print("------------------------------------------")
+    print("-------------------------------------")
     time.sleep(5)
-    print("")
     try:
         output = subprocess.check_output(["python2", "avbtool", "info_image", "--image", "boot.img"], stderr=subprocess.STDOUT, text=True)
     except subprocess.CalledProcessError as e:
@@ -79,16 +91,15 @@ def main():
             print_error("Failed to check 'boot image info!'. Please make sure the 'boot.img' file is placed in the folder.")
             sys.exit(1)
         elif "Given image does not look like a vbmeta image" in error_output:
-             print_error("Failed to check 'boot image info!'.The image you have provided does not look like a boot image.")
-             print("")
-             print("Possible reason: corrupted/broken or not in currect boot image format.")
-             sys.exit(1)
+            print_error("Failed to check 'boot image info!'.The image you have provided does not look like a boot image.")
+            print("")
+            print("Possible reason: corrupted/broken image or not in current format.")
+            sys.exit(1)
         else:
             print(error_output)  # Print the complete error output for debugging
             print_error("Failed to check 'boot image info!")
             sys.exit(1)
-            
-    output =""
+        
     lines = output.splitlines()
     fingerprint = None
     for line in lines:
@@ -103,20 +114,20 @@ def main():
     fingerprint = fingerprint.replace("'", "").replace('"', '').replace('[', '').replace(']', '')
 
     print_info("Signing in progress, please wait...")
+    print("-------------------------------------")
     time.sleep(10)
-    
+
     cmd = [
         "python2", "avbtool", "add_hash_footer", "--image", "boot.img", "--partition_name", "boot",
         "--partition_size", "67108864", "--key", "boot.pem", "--algorithm", "SHA256_RSA4096",
-        "--prop", "com.android.build.boot.fingerprint:{}".format(fingerprint),
+        "--prop", f"com.android.build.boot.fingerprint:{fingerprint}",
         "--prop", "com.android.build.boot.os_version:11"
     ]
     try:
         output = subprocess.check_output(cmd, stderr=subprocess.STDOUT, text=True)
     except subprocess.CalledProcessError as e:
         error_output = e.output
-        if "avbtool:" in error_output:
-            print_error("Error:", error_output)
+        print_error("error_output")
         sys.exit(1)
     else:
         print("")
