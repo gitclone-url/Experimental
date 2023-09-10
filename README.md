@@ -72,11 +72,11 @@
   </a>
 </div>
 
-
+<br>
 <div align="center">
   
-### Connect with me on 
-
+ **Connect with me on**
+ 
 [![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](YourTelegramLink)
 
 </div>
