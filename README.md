@@ -75,15 +75,15 @@
 <br>
 <div align="center">
   
-**Connect with me on 🗨️** 
+**Connect with me on ↆ** 
 
 [![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](YourTelegramLink)
 
-↓
 </div>
 <div align="center">
-  
-<p align="center"> 𝗟𝗮𝗻𝗴𝘂𝗮𝗴𝗲𝘀 𝗜 𝘂𝘀𝗲𝗱 𝗺𝗼𝘀𝘁  </p>
+
+---  
+<p align="center"> GitHub State </p>
   
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=gitclone-url&layout=compact&theme=midnight-purple)](https://github.com/anuraghazra/github-readme-stats)
  
