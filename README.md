@@ -93,8 +93,4 @@
   
 [![Readme Quotes](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=algolia)](https://github.com/piyushsuthar/github-readme-quotes)
 
-**Connect with me on ↆ** 
-
-[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](YourTelegramLink)
-
 </div>
