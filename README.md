@@ -1,4 +1,3 @@
-
 <div align="center">
   <a href="https://example.com/your-link-url">
     <img src="https://github.com/gitclone-url/testing/blob/main/Hi%2C%20i'am.gif"/>
@@ -11,7 +10,7 @@
   </p>
 </div>
 
-<div align="left">
+<div align="center">
   <h1 style="font-size: 32px; font-family: 'Poppins', sans-serif;">About Me</h1>
 </div>
 
