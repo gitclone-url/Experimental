@@ -11,7 +11,7 @@
 </div>
 
 <div align="center">
-  <h1 style="font-size: 32px; font-family: 'Poppins', sans-serif;">About Me</h1>
+  <h1>About Me</h1>
 </div>
 
   
@@ -27,7 +27,7 @@
 
 <br>
 <p align="center">
-  <b>𝐓𝐨𝐨𝐥𝐬 𝐚𝐧𝐝 𝐥𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 𝐈 𝐥𝐢𝐤𝐞</b> 👇
+  <b> 𝗠𝘆 𝘁𝗲𝗰𝗵 𝘀𝘁𝗮𝗰𝗸 </b> 👇
 </p>
 
 
