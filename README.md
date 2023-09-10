@@ -25,6 +25,7 @@
 - 📱 I enjoy tweaking Android phones. so you can call me a Android Enthusiast 😁, exploring the full potential of mobile devices.
 - 🎮 In my free time, I love playing games, immersing myself in virtual worlds and challenges.
 
+
 <br>
 <p align="center">
   <b>𝐓𝐨𝐨𝐥𝐬 𝐚𝐧𝐝 𝐥𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 𝐈 𝐥𝐢𝐤𝐞</b> 👇
@@ -84,11 +85,14 @@
 
 <img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=gitclone-url&theme=holi-theme">
 </p>
- 
+
+<br>
 </div>
 
 <div align="center">
   
+[![Readme Quotes](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=algolia)](https://github.com/piyushsuthar/github-readme-quotes)
+
 **Connect with me on ↆ** 
 
 [![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](YourTelegramLink)
