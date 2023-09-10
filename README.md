@@ -24,11 +24,11 @@
 - 🎮 In my free time, I love playing games, immersing myself in virtual worlds and challenges.
 
 <br>
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 <p align="center">
   <b>Tools and languages I like</b> 👇
 </p>
 
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
 
 <div align="center">
   <a href="https://docs.microsoft.com/en-us/powershell/">
