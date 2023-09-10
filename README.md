@@ -1,12 +1,14 @@
 
 <div align="center">
   <a href="https://example.com/your-link-url">
-    <img src="https://github.com/gitclone-url/testing/blob/main/Hi%2C%20i'am.gif" alt="Your GIF" />
+    <img src="https://github.com/gitclone-url/testing/blob/main/Hi%2C%20i'am.gif"/>
   </a>
 </div>
 
-👋 I'm a self-taught coder and a passionate tech enthusiast who's all about open source and building fun projects in my free time. While I'm not a professional developer, I absolutely love tinkering with code and exploring new technologies.
-
+ <p align="center">
+   a self-taught coder passionate about open source, building small projects for fun in free time. 
+ </p>
+   
 ## About Me
 
 - 🌐 As a tech enthusiast, I have a deep passion for new technologies and love diving into various programming languages to expand my knowledge.
