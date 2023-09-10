@@ -5,23 +5,25 @@
   </a>
 </div>
 
- <p align="center">
-   a self-taught coder passionate about open source, building small projects for fun in free time. 
- </p>
-   
 <div align="center">
-  <h2 style="font-size: 24px; font-family: 'Arial', sans-serif;">About Me</h2>
+  <p style="font-size: 18px; font-family: 'Open Sans', sans-serif;">A self-taught coder passionate about open source, building small projects for fun in free time.</p>
 </div>
+   
+<div align="left">
+  <h1 style="font-size: 32px; font-family: 'Poppins', sans-serif;">About Me</h1>
+</div>
+
   
 - 👨‍💻 I'm a tech enthusiast with a deep love for new technologies.
 - 💻 Currently, I'm immersed in learning web development, aiming to craft dynamic and responsive websites.
 - 🌐 While I'm not a professional developer, I'm passionately dedicated to coding and enjoy delving into various programming languages to broaden my expertise.
-- interested in Android OS and Linux/Unix-like operating systems.
+- 🖥️ I have a keen interest in Android OS and Linux/Unix-like operating systems.
 - ✈️ You can call me a hodophile—I have a dream of traveling to every part of the world and experiencing diverse cultures.
 - 🌿 I'm a nature lover who finds solace in the beauty of the natural world.
 - 📱 I enjoy tweaking Android phones. so you can call me a Android Enthusiast 😁, exploring the full potential of mobile devices.
 - 🎮 In my free time, I love playing games, immersing myself in virtual worlds and challenges.
 
+<br>
 <p align="center">
   <b>Tools and languages I like</b> 👇
 </p>
@@ -68,11 +70,18 @@
   </a>
 </div>
 
-## Contact Me
-
-![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)
 
 <div align="center">
+  
+### Connect with me on 
+
+[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](YourTelegramLink)
+
+</div>
+
+<div align="center">
+  
+languages:
   
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=gitclone-url&layout=compact&theme=midnight-purple)](https://github.com/anuraghazra/github-readme-stats)
  
