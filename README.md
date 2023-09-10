@@ -6,8 +6,8 @@
 </div>
 
 <div align="center">
-  <p style="font-size: 18px; font-family: 'Cosmic Sans', sans-serif;">
-    A self-taught coder passionate about open source, building small projects for fun in free time.
+  <p>
+   <b>𝙰 𝚜𝚎𝚕𝚏-𝚝𝚊𝚞𝚐𝚑𝚝 𝚌𝚘𝚍𝚎𝚛 𝚙𝚊𝚜𝚜𝚒𝚘𝚗𝚊𝚝𝚎 𝚊𝚋𝚘𝚞𝚝 𝚘𝚙𝚎𝚗 𝚜𝚘𝚞𝚛𝚌𝚎, 𝚋𝚞𝚒𝚕𝚍𝚒𝚗𝚐 𝚜𝚖𝚊𝚕𝚕 𝚙𝚛𝚘𝚓𝚎𝚌𝚝𝚜 𝚏𝚘𝚛 𝚏𝚞𝚗 𝚒𝚗 𝚏𝚛𝚎𝚎 𝚝𝚒𝚖𝚎.</b>
   </p>
 </div>
 
@@ -27,7 +27,7 @@
 
 <br>
 <p align="center">
-  <b>Tools and languages I like</b> 👇
+  <b>𝐓𝐨𝐨𝐥𝐬 𝐚𝐧𝐝 𝐥𝐚𝐧𝐠𝐮𝐚𝐠𝐞𝐬 𝐈 𝐥𝐢𝐤𝐞</b> 👇
 </p>
 
 
