@@ -43,5 +43,4 @@
  
 </div>
 
-<h2 align="center">Happy coding! 🚀</h2>
-
+<div style="text-align: center; font-family: Arial, sans-serif; font-size: 24px;">Happy coding! 🚀</div>
