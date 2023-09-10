@@ -8,7 +8,7 @@
 <div align="center">
   <p style="font-size: 18px; font-family: 'Open Sans', sans-serif;">A self-taught coder passionate about open source, building small projects for fun in free time.</p>
 </div>
-   
+
 <div align="left">
   <h1 style="font-size: 32px; font-family: 'Poppins', sans-serif;">About Me</h1>
 </div>
@@ -27,6 +27,8 @@
 <p align="center">
   <b>Tools and languages I like</b> 👇
 </p>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
 
 <div align="center">
   <a href="https://docs.microsoft.com/en-us/powershell/">
