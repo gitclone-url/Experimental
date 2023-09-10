@@ -10,12 +10,13 @@
  </p>
    
 ## About Me
-
-- 🌐 As a tech enthusiast, I have a deep passion for new technologies and love diving into various programming languages to expand my knowledge.
-- 💻 Currently, I'm exploring the exciting world of web development, eager to create web applications and websites.
+- 👨‍💻 I'm a tech enthusiast with a deep love for new technologies.
+- 💻 Currently, I'm immersed in learning web development, aiming to craft dynamic and responsive websites.
+- 🌐 While I'm not a professional developer, I'm passionately dedicated to coding and enjoy delving into various programming languages to broaden my expertise.
+- interested in Android OS and Linux/Unix-like operating systems.
 - ✈️ You can call me a hodophile—I have a dream of traveling to every part of the world and experiencing diverse cultures.
 - 🌿 I'm a nature lover who finds solace in the beauty of the natural world.
-- 📱 I enjoy tweaking Android phones and consider myself a modder, exploring the full potential of mobile devices.
+- 📱 I enjoy tweaking Android phones. so you can call 😁myself a modder, exploring the full potential of mobile devices.
 - 🎮 In my free time, I love playing games, immersing myself in virtual worlds and challenges.
 
 <p align="center">
