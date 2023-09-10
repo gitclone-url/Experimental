@@ -7,11 +7,18 @@
 
 👋 I'm a self-taught coder and a passionate tech enthusiast who's all about open source and building fun projects in my free time. While I'm not a professional developer, I absolutely love tinkering with code and exploring new technologies.
 
-💻 Coding is my happy place, and I'm constantly curious about various programming languages and technologies.
+## About Me
 
-📱 I'm a big fan of Android OS and 🐧 Linux, and I thoroughly enjoy customizing my Android phone.
+- 🌐 As a tech enthusiast, I have a deep passion for new technologies and love diving into various programming languages to expand my knowledge.
+- 💻 Currently, I'm exploring the exciting world of web development, eager to create web applications and websites.
+- ✈️ You can call me a hodophile—I have a dream of traveling to every part of the world and experiencing diverse cultures.
+- 🌿 I'm a nature lover who finds solace in the beauty of the natural world.
+- 📱 I enjoy tweaking Android phones and consider myself a modder, exploring the full potential of mobile devices.
+- 🎮 In my free time, I love playing games, immersing myself in virtual worlds and challenges.
 
-🌿 Nature lover, tech explorer, and an enthusiastic hodophile with a dream to travel every part of the world.
+<p align="center">
+  <b>Tools and languages I like</b> 👇
+</p>
 
 [![PowerShell](https://img.shields.io/badge/PowerShell-%235391FE.svg?style=for-the-badge&logo=powershell&logoColor=white)](https://docs.microsoft.com/en-us/powershell/)
 [![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)](https://ubuntu.com/)
@@ -33,8 +40,8 @@
 <div align="center">
   
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=gitclone-url&layout=compact&theme=midnight-purple)](https://github.com/anuraghazra/github-readme-stats)
-  
+ 
 </div>
 
+<h2 align="center">Happy coding! 🚀</h2>
 
-Happy coding! 🚀
