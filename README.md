@@ -84,12 +84,5 @@
 
 <img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=gitclone-url&theme=holi-theme">
 </p>
-
 <br>
-</div>
-
-<div align="center">
-  
-[![Readme Quotes](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=algolia)](https://github.com/piyushsuthar/github-readme-quotes)
-
 </div>
