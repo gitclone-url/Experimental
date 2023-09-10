@@ -6,7 +6,9 @@
 </div>
 
 <div align="center">
-  <p style="font-size: 18px; font-family: 'Open Sans', sans-serif;">A self-taught coder passionate about open source, building small projects for fun in free time.</p>
+  <p style="font-size: 18px; font-family: 'Cosmic Sans', sans-serif;">
+    A self-taught coder passionate about open source, building small projects for fun in free time.
+  </p>
 </div>
 
 <div align="left">
