@@ -93,8 +93,11 @@ I'm a tech enthusiast with a deep love for cutting-edge technologies and am alwa
 <br>
 </div>
 
-<h2> Code For Life</h2>
-
+<details>
+<summary style="cursor: pointer; text-align: center; display: flex; justify-content: center; align-items: center;">
+    <b>Code of Life 🧬</b>
+  </summary>
+  
 ```python
 class LifeJourney:
     def __init__(self):
@@ -142,3 +145,4 @@ journey = LifeJourney()
 journey.set_goals()
 journey.experience_life()
 ```
+</details>
