@@ -13,13 +13,13 @@
 <div align="center">
   <h1>About Me</h1>
   
- I have a dream of traveling to every part of the world and experiencing diverse cultures. ✈️
+I have a dream of traveling to every part of the world and experiencing diverse cultures. ✈️
 
- Nature is my escape, and I find solace in the beauty of the natural world. 🌿
+Nature is my escape, and I find solace in the beauty of the natural world. 🌿
 
- You can call me an Android Enthusiast 😁. I enjoy tweaking Android phones and exploring the full potential of mobile devices. 📱
+You can call me an Android Enthusiast 😁. I enjoy tweaking Android phones and exploring the full potential of mobile devices. 📱
 
- In my free time, I love playing games, immersing myself in virtual worlds, and taking on new gaming challenges. 🎮
+In my free time, I love playing games, immersing myself in virtual worlds, and taking on new gaming challenges. 🎮
 
 My interests also extend to Android OS and Linux/Unix-like operating systems, where I enjoy delving into their intricacies. 💻
 
@@ -29,14 +29,32 @@ While I may not be a professional developer, I'm passionately dedicated to codin
 
 I'm a tech enthusiast with a deep love for cutting-edge technologies and am always eager to explore the latest innovations. 🌟
 
-Let's connect and explore the tech world together! 🚀
-
 </div>
+
+
+```java
+always {
+    try {
+    } catch (Java) {
+        ASSIGNMENT HELP your best and;
+        do {
+        } if (you fail) what you need to do;
+    } while (you still have the time);
+
+    for (opportunity; comes; only once) {
+        so grab the chance;
+    } catch (yourself) {
+        throw "all your worries";
+        everytime you fall;
+        and you know to Whom you should goto always;
+    }
+}
+```
+
 <br>
 <p align="center">
   <b> 𝗠𝘆 𝘁𝗲𝗰𝗵 𝘀𝘁𝗮𝗰𝗸 </b> 👇
 </p>
-
 
 <div align="center">
   <a href="https://docs.microsoft.com/en-us/powershell/">
