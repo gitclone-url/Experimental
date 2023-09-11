@@ -16,14 +16,13 @@
 
   
 - 👨‍💻 I'm a tech enthusiast with a deep love for new technologies.
-- 💻 Currently, I'm immersed in learning web development, aiming to craft dynamic and responsive websites.
-- 🌐 While I'm not a professional developer, I'm passionately dedicated to coding and enjoy delving into various programming languages to broaden my expertise.
-- 🖥️ I have a keen interest in Android OS and Linux/Unix-like operating systems.
-- ✈️ You can call me a hodophile—I have a dream of traveling to every part of the world and experiencing diverse cultures.
 - 🌿 I'm a nature lover who finds solace in the beauty of the natural world.
-- 📱 I enjoy tweaking Android phones. so you can call me a Android Enthusiast 😁, exploring the full potential of mobile devices.
+- 🖥️ I have a keen interest in Android OS and Linux/Unix-like operating systems.
 - 🎮 In my free time, I love playing games, immersing myself in virtual worlds and challenges.
-
+- 💻 Currently, I'm immersed in learning web development, aiming to craft dynamic and responsive websites.
+- ✈️ You can call me a hodophile—I have a dream of traveling to every part of the world and experiencing diverse cultures.
+- 📱 I enjoy tweaking Android phones. so you can call me a Android Enthusiast 😁, exploring the full potential of mobile devices.
+- 🌐 While I'm not a professional developer, I'm passionately dedicated to coding and enjoy delving into various programming languages to      broaden my expertise.
 
 <br>
 <p align="center">
