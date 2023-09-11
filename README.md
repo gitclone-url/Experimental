@@ -32,25 +32,6 @@ I'm a tech enthusiast with a deep love for cutting-edge technologies and am alwa
 </div>
 
 
-```python
-def life_journey():
-    me = Person()
-    while me.is_alive():
-        try:
-            me.enjoy_every_moment()
-            if challenges_arise():
-                me_overcome_them()
-        except self_doubt:
-            me.find_inner_strength()
-        else:
-            if time_runs_out():
-                me.find_peace()
-    return me.legacy()
-
-result = life_journey()
-print("Life's journey is complete. Legacy:", result)
-```
-
 <br>
 <p align="center">
   <b> 𝗠𝘆 𝘁𝗲𝗰𝗵 𝘀𝘁𝗮𝗰𝗸 </b> 👇
@@ -111,3 +92,53 @@ print("Life's journey is complete. Legacy:", result)
 </p>
 <br>
 </div>
+
+<h2> Code For Life</h2>
+
+```python
+class LifeJourney:
+    def __init__(self):
+        self.goals = []
+        self.moments = []
+
+    def set_goals(self):
+        self.goals.append("Dream big")
+        self.goals.append("Learn continuously")
+        self.goals.append("Persist through challenges")
+
+    def experience_life(self):
+        while True:
+            if self.have_goals():
+                self.work_towards_goals()
+            else:
+                self.enjoy_the_moments()
+
+    def have_goals(self):
+        return bool(self.goals)
+
+    def work_towards_goals(self):
+        for goal in self.goals:
+            print("Aspiring to:", goal)
+            if obstacle_appears():
+                print("Overcoming obstacles...")
+                self.find_motivation()
+            else:
+                print("Achieved:", goal)
+                self.goals.remove(goal)
+
+    def enjoy_the_moments(self):
+        moment = create_special_moment()
+        print("Embracing the moment:", moment)
+        if time_flies():
+            print("Time to set new goals!")
+            self.set_goals()
+
+    def find_motivation(self):
+        motivation = "Every challenge is an opportunity."
+        print("Motivation:", motivation)
+
+# Start the life journey
+journey = LifeJourney()
+journey.set_goals()
+journey.experience_life()
+```
