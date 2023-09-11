@@ -12,18 +12,23 @@
 
 <div align="center">
   <h1>About Me</h1>
-</div>
-
   
-- 👨‍💻 I'm a tech enthusiast with a deep love for new technologies.
-- 🌿 I'm a nature lover who finds solace in the beauty of the natural world.
-- 🖥️ I have a keen interest in Android OS and Linux/Unix-like operating systems.
-- 🎮 In my free time, I love playing games, immersing myself in virtual worlds and challenges.
-- 💻 Currently, I'm immersed in learning web development, aiming to craft dynamic and responsive websites.
-- ✈️ You can call me a hodophile—I have a dream of traveling to every part of the world and experiencing diverse cultures.
-- 📱 I enjoy tweaking Android phones. so you can call me a Android Enthusiast 😁, exploring the full potential of mobile devices.
-- 🌐 While I'm not a professional developer, I'm passionately dedicated to coding and enjoy delving into various programming languages to      broaden my expertise.
+👨‍💻 I'm a passionate tech enthusiast with a deep love for cutting-edge technologies. 🌟
 
+🌿 Nature lover and explorer, finding solace in the beauty of the natural world.
+
+💻 My interests lie in Android OS and Linux/Unix-like operating systems.
+
+🎮 In my free time, I immerse myself in virtual worlds and gaming challenges.
+
+🌐 Currently, I'm on a journey to master web development, crafting dynamic and responsive websites.
+
+✈️ You can call me a hodophile—I dream of traveling the world and experiencing diverse cultures.
+
+📱 I enjoy tweaking Android phones, so you can call me an Android Enthusiast 😁, unlocking the full potential of mobile devices.
+
+💡 While I may not be a professional developer, I'm passionately dedicated to coding and love exploring various programming languages to broaden my expertise.
+</div>
 <br>
 <p align="center">
   <b> 𝗠𝘆 𝘁𝗲𝗰𝗵 𝘀𝘁𝗮𝗰𝗸 </b> 👇
