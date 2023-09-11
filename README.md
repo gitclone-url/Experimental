@@ -32,23 +32,23 @@ I'm a tech enthusiast with a deep love for cutting-edge technologies and am alwa
 </div>
 
 
-```java
-always {
-    try {
-    } catch (Java) {
-        ASSIGNMENT HELP your best and;
-        do {
-        } if (you fail) what you need to do;
-    } while (you still have the time);
+```python
+def life_journey():
+    me = Person()
+    while me.is_alive():
+        try:
+            me.enjoy_every_moment()
+            if challenges_arise():
+                me_overcome_them()
+        except self_doubt:
+            me.find_inner_strength()
+        else:
+            if time_runs_out():
+                me.find_peace()
+    return me.legacy()
 
-    for (opportunity; comes; only once) {
-        so grab the chance;
-    } catch (yourself) {
-        throw "all your worries";
-        everytime you fall;
-        and you know to Whom you should goto always;
-    }
-}
+result = life_journey()
+print("Life's journey is complete. Legacy:", result)
 ```
 
 <br>
