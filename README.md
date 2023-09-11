@@ -31,7 +31,6 @@ I'm a tech enthusiast with a deep love for cutting-edge technologies and am alwa
 
 </div>
 
-
 <br>
 <p align="center">
   <b> 𝗠𝘆 𝘁𝗲𝗰𝗵 𝘀𝘁𝗮𝗰𝗸 </b> 👇
@@ -144,3 +143,11 @@ journey = LifeJourney()
 journey.set_goals()
 journey.experience_life()
 ```
+
+<div align="center">
+  
+Contact me on [Telegram](https://t.me/PhantomXPain)
+![Aussie Parrot GIF](https://github.com/jmhobbs/cultofthepartyparrot.com/blob/main/parrots/asyncparrot.gif)
+
+</div>
+
