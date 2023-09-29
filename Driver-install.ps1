@@ -21,15 +21,18 @@ if ($devicesWithErrors.Count -eq 0) {
         # Specify the path to the Google USB driver INF file in the driver folder
         $driverInfPath = Join-Path -Path $googleDriverPath -ChildPath "android_winusb.inf"
         
+        # Use pnputil to add the driver package to the driver store
+        Invoke-Expression "pnputil.exe /add-driver $driverInfPath /install"
+        
         # Try to update the driver using the specified INF file
         try {
             Update-PnpDriver -Path $driverInfPath -InstanceId $deviceId -Confirm:$false -Force -ErrorAction Stop
             Write-Host "Driver updated for $deviceName"
         } catch {
-            # Capture the error message and add it to the errorMessages array
-            $errorMessage = "Failed to update driver for $deviceName: $_"
-            $errorMessages += $errorMessage
-            Write-Host $errorMessage
+            # Display the exception message
+            Write-Host "Error: $($_.Exception.Message)"
+            # Add the error message to the errorMessages array if needed
+            $errorMessages += "Failed to update driver for $deviceName: $($_.Exception.Message)"
         }
     }
 
