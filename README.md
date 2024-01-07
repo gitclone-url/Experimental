@@ -96,27 +96,30 @@ I'm a tech enthusiast with a deep love for cutting-edge technologies and am alwa
     <b>Code of Life&#9660;</b>
 </h2>
   
+<div style="padding-right: 10px;">
+  
 ```c++
- #include <Life>
+#include <life.h>
 
 bool alive = true;
 
 void dailyRoutine() {
     while (alive) {
           if (isWorkingDay()) {
-          	wakeUp();
-          	  morningMeeting();
-          	 code();
-          	  lunchBreak();
-               codeMore();
-              eveningMeeting();
-               dinner();
-             relax();
-         } else {
-         	exploreSideProjects();
-         	learnNewSkills();
-         	contributeToOpenSource();
-         	haveFun();
+             wakeUp();
+               breakfast();
+             code();
+               lunchBreak();
+                  relax();
+                  spendTimewithFriends();
+                 dinner();
+                 codeMore();
+             sleep();
+          } else {
+                  learnNewSkills();
+                  exploreSideProjects();
+               contributeToOpenSource();
+            haveFun();
            }
 
         if (isWeekend()) {
@@ -131,6 +134,7 @@ int main() {
     return 0;
 }
 ```
+</div>
 
 <div align="center">
   
