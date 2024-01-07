@@ -96,7 +96,7 @@ I'm a tech enthusiast with a deep love for cutting-edge technologies and am alwa
     <b>Code of Life&#9660;</b>
 </h2>
   
-```java
+```swift
  #include <Life>
 
 bool alive = true;
