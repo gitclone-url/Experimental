@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/bin/sh
 
 #<< BIScript 'BANNER'
 # ______  _  ______             _              
