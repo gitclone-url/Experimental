@@ -1,75 +1,60 @@
-use std::fs::File;
-use std::io::{self, Read, Seek, SeekFrom};
-use std::path::{Path, PathBuf};
+use std::env;
+use std::fs::{self, File};
+use std::io::{self, Read, Seek, SeekFrom, Write};
+use std::path::Path;
 
-const SEARCH_VALUE: i32 = 1048576;
-const NAME_LENGTH: usize = 30;
-const KEY_LENGTH: usize = 1032;
-
-fn main() {
-    if let Some(meta_path) = std::env::args().nth(1) {
-        if let Some(meta_dir) = Path::new(&meta_path).parent() {
-            if let Ok(mut stream) = File::open(&meta_path).map(io::BufReader::new) {
-                while let Some(key_info) = find_next_key(&mut stream) {
-                    if let Ok((name, key)) = key_info {
-                        save_key_file(&meta_dir, name, key);
-                    }
-                }
-            } else {
-                eprintln!("Failed to open file: {}", meta_path);
-            }
-        } else {
-            eprintln!("Invalid parent directory: {}", meta_path);
-        }
-    } else {
-        eprintln!("No input file provided");
+fn main() -> io::Result<()> {
+    let args: Vec<String> = env::args().collect();
+    if args.len() < 2 {
+        println!("No input file");
+        return Ok(());
     }
-}
+    
+    let meta_path = &args[1];
+    let meta_dir = Path::new(meta_path).parent().expect("Failed to get parent directory");
 
-fn find_next_key<R: Read + Seek>(stream: &mut R) -> Option<Result<(String, Vec<u8>), io::Error>> {
+    // Create a folder named 'key' in the parent directory
+    let key_dir = meta_dir.join("key");
+    fs::create_dir_all(&key_dir)?;
+
+    let mut stream = io::Cursor::new(std::fs::read(meta_path)?);
+
+    // Search for 00 00 10 00 (int = 1048576)
     loop {
-        if stream.seek(SeekFrom::Current(4)).is_err() || stream.seek(SeekFrom::Current(-4)).is_err() {
+        if stream.position() as usize > stream.get_ref().len().saturating_sub(4) {
             break;
         }
 
-        if let Ok(req_value) = stream.read_i32::<std::io::LittleEndian>() {
-            if req_value == SEARCH_VALUE {
-                if stream.seek(SeekFrom::Current(-(NAME_LENGTH as i64 + 4))).is_err() {
-                    break;
-                }
+        let mut buffer = [0u8; 4];
+        stream.read_exact(&mut buffer)?;
+        let req_value = i32::from_le_bytes(buffer);
 
-                let mut bytes = vec![0; NAME_LENGTH];
-                if stream.read_exact(&mut bytes).is_err() {
-                    break;
-                }
+        if req_value == 1048576 {
+            // Search for name, take last 30 bytes and remove zero
+            stream.seek(SeekFrom::Current(-34))?;
+            let mut bytes = vec![0u8; 30];
+            stream.read_exact(&mut bytes)?;
 
-                if bytes.iter().filter(|&&a| a == 0).count() > 10 {
-                    if let Ok(mut key_bytes) = read_exact_n_bytes(stream, KEY_LENGTH) {
-                        let name = String::from_utf8_lossy(&bytes).trim_end_matches(char::from(0)).to_string();
-                        return Some(Ok((name, key_bytes)));
-                    }
-                } else {
-                    stream.seek(SeekFrom::Current(4)).unwrap_or(());
-                }
+            let zero_count = bytes.iter().filter(|&&x| x == 0).count();
+            
+            if zero_count > 10 {
+                let name_bytes: Vec<u8> = bytes.into_iter().filter(|&x| x != 0).collect();
+                let name = String::from_utf8_lossy(&name_bytes);
+
+                let mut key_bytes = vec![0u8; 1032];
+                stream.read_exact(&mut key_bytes)?;
+
+                // Append the folder name to the key path
+                let key_path = key_dir.join(format!("{}_key.bin", name));
+                let mut file = File::create(&key_path)?;
+                file.write_all(&key_bytes)?;
             } else {
-                stream.seek(SeekFrom::Current(-3)).unwrap_or(());
+                stream.seek(SeekFrom::Current(4))?;
             }
         } else {
-            break;
+            stream.seek(SeekFrom::Current(-3))?;
         }
     }
-    None
-}
-
-fn read_exact_n_bytes<R: Read>(reader: &mut R, n: usize) -> Result<Vec<u8>, io::Error> {
-    let mut buffer = vec![0; n];
-    reader.read_exact(&mut buffer)?;
-    Ok(buffer)
-}
-
-fn save_key_file(dir: &Path, name: String, key: Vec<u8>) {
-    let file_path = dir.join(format!("{}_key.bin", name));
-    if let Err(err) = std::fs::write(&file_path, &key) {
-        eprintln!("Failed to write key file {}: {}", file_path.display(), err);
-    }
-}
+    Ok(())
+                }
+    
