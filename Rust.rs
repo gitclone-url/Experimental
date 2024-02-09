@@ -1,60 +1,109 @@
-use std::env;
-use std::fs::{self, File};
-use std::io::{self, Read, Seek, SeekFrom, Write};
+mod Keysextractor;
+use Keysextractor::extract_keys;
+use std::collections::HashMap;
+use std::fs::File;
+use std::io::{self, Read, Write};
 use std::path::Path;
+use std::process::Command;
+use std::str;
+use std::io::prelude::*;
 
-fn main() -> io::Result<()> {
-    let args: Vec<String> = env::args().collect();
-    if args.len() < 2 {
-        println!("No input file");
-        return Ok(());
-    }
-    
-    let meta_path = &args[1];
-    let meta_dir = Path::new(meta_path).parent().expect("Failed to get parent directory");
+struct Descriptor {
+    partition_name: String,
+    rollback_index_location: u32,
+    public_key: String,
+}
 
-    // Create a folder named 'key' in the parent directory
-    let key_dir = meta_dir.join("key");
-    fs::create_dir_all(&key_dir)?;
+struct VbMeta {
+    algorithm: String,
+    descriptors: HashMap<String, Descriptor>,
+}
 
-    let mut stream = io::Cursor::new(std::fs::read(meta_path)?);
-
-    // Search for 00 00 10 00 (int = 1048576)
-    loop {
-        if stream.position() as usize > stream.get_ref().len().saturating_sub(4) {
-            break;
+impl VbMeta {
+    fn new() -> Self {
+        VbMeta {
+            algorithm: String::new(),
+            descriptors: HashMap::new(),
         }
+    }
 
-        let mut buffer = [0u8; 4];
-        stream.read_exact(&mut buffer)?;
-        let req_value = i32::from_le_bytes(buffer);
-
-        if req_value == 1048576 {
-            // Search for name, take last 30 bytes and remove zero
-            stream.seek(SeekFrom::Current(-34))?;
-            let mut bytes = vec![0u8; 30];
-            stream.read_exact(&mut bytes)?;
-
-            let zero_count = bytes.iter().filter(|&&x| x == 0).count();
-            
-            if zero_count > 10 {
-                let name_bytes: Vec<u8> = bytes.into_iter().filter(|&x| x != 0).collect();
-                let name = String::from_utf8_lossy(&name_bytes);
-
-                let mut key_bytes = vec![0u8; 1032];
-                stream.read_exact(&mut key_bytes)?;
-
-                // Append the folder name to the key path
-                let key_path = key_dir.join(format!("{}_key.bin", name));
-                let mut file = File::create(&key_path)?;
-                file.write_all(&key_bytes)?;
-            } else {
-                stream.seek(SeekFrom::Current(4))?;
+    fn parse(&mut self, input: &str) {
+        let lines: Vec<&str> = input.lines().collect();
+        for line in lines {
+            let parts: Vec<&str> = line.split(":").collect();
+            match parts[0] {
+                "Algorithm" => self.algorithm = parts[1].trim().to_string(),
+                "Chain Partition descriptor" => {
+                    let partition_name = lines[lines.iter().position(|&r| r == line).unwrap() + 1].split(":").collect::<Vec<&str>>()[1].trim().to_string();
+                    let rollback_index_location = lines[lines.iter().position(|&r| r == line).unwrap() + 2].split(":").collect::<Vec<&str>>()[1].trim().parse().unwrap();
+                    let public_key = lines[lines.iter().position(|&r| r == line).unwrap() + 3].split(":").collect::<Vec<&str>>()[1].trim().to_string();
+                    self.descriptors.insert(partition_name.clone(), Descriptor {
+                        partition_name,
+                        rollback_index_location,
+                        public_key,
+                    });
+                },
+                _ => (),
             }
-        } else {
-            stream.seek(SeekFrom::Current(-3))?;
         }
     }
-    Ok(())
-                }
-    
+}
+
+fn calculate_padding_size(file_path: &str) -> Option<usize> {
+    let mut file = File::open(file_path).expect("Failed to open file");
+    let mut data = Vec::new();
+    file.read_to_end(&mut data).expect("Failed to read file");
+
+    let index_dhtb = data.windows(4).position(|window| window == b"DHTB");
+
+    if let Some(index) = index_dhtb {
+        let section_data = &data[index + 4..];
+
+        let padding_size_mapping = [
+            (&[0x00, 0x50, 0x00, 0x00][..], 20480),
+            (&[0x00, 0x40, 0x00, 0x00][..], 16384),
+            (&[0x00, 0x30, 0x00, 0x00][..], 12288),
+            // Add more mappings as needed
+        ];
+
+        for (pattern, size) in &padding_size_mapping {
+            if section_data.windows(4).any(|window| window == *pattern) {
+                return Some(*size);
+            }
+        }
+
+        println!("No recognized padding size pattern found after 'DHTB'");
+        None
+    } else {
+        println!("Text-string 'DHTB' not found in the file.");
+        None
+    }
+}
+
+
+fn main() {
+    let output = Command::new("python")
+        .arg("avbtool.py")
+        .arg("info_image")
+        .arg("--image")
+        .arg("vbmeta-sign.img")
+        .output()
+        .expect("Failed to execute command");
+
+    let output_str = str::from_utf8(&output.stdout).unwrap();
+
+    let mut vbmeta = VbMeta::new();
+    vbmeta.parse(output_str);
+
+    let file_path = "vbmeta-sign.img";
+    if let Some(padding_size) = calculate_padding_size(file_path) {
+        println!("Padding size: {}", padding_size);
+    } else {
+        println!("Failed to determine padding size.");
+    }
+
+    if let Err(e) = extract_keys(file_path) {
+        eprintln!("Failed to extract keys: {}", e);
+    }
+                                                                     }
+        
