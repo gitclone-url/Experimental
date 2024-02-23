@@ -6,7 +6,17 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 class TestBootImageExtractor(unittest.TestCase):
-	
+    """
+    Unit tests to verify the functionality of the Boot Image Extractor script in various scenarios.
+
+    Methods:
+    - Tests banner printing
+    - Tests boot image extraction for single-slot devices
+    - Tests boot image extraction for dual-slot devices, including slot selection
+    
+    Add Additional test cases as needed to further enhance test coverage and handel different scenarios.
+    """
+
     def test_print_banner(self):
         from src.boot_image_extractor import print_banner
         with patch('builtins.print') as mock_print:
@@ -41,4 +51,4 @@ class TestBootImageExtractor(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-                        
+	
