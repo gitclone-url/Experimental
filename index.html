@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WatchMovie.ts</title>
+    <meta name="description" content="A website that converts Youtube videos into mp3 files. Made using Next.js">
+    <link rel="icon" href="/favicon.ico">
+    <!-- External CSS library (Tailwind CSS) -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex justify-center items-center flex-col pt-40 text-center font-bold lg:text-8xl text-6xl space-y-2">
+        <h1 class="text-white pb-10">
+            Watch <span class="text-red-400">Movies</span> From
+            <span class="text-red-400"> IMDB</span>
+        </h1>
+    </div>
+    <div class="flex justify-center items-center flex-col text-center">
+        <h6 class="text-white pb-10">
+            Just Enter the <span class="text-blue-400">Title</span> of the
+            <span class="text-blue-400"> Movie</span>
+        </h6>
+    </div>
+    <br>
+    <center>
+        <div class="w-full max-w-xs">
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <div class="mb-4">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" id="search-input" type="text" placeholder="Search for a movie" autocomplete="off">
+                </div>
+                <div class="flex items-center justify-between">
+                    <button
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+                        type="button" onclick="fetchAndShow()">
+                        Search
+                    </button>
+                </div>
+            </form>
+        </div>
+    </center>
+    <br>
+    <br>
+    <div id="movieResults" class="flex justify-center flex-wrap"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script>
+        // Three.js scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Geometry and material for particles
+        const starGeometry = new THREE.BufferGeometry();
+        const starMaterial = new THREE.PointsMaterial({ color: 0xffffff });
+
+        const starVertices = [];
+        for (let i = 0; i < 1000; i++) {
+            const x = (Math.random() - 0.5) * 2000;
+            const y = (Math.random() - 0.5) * 2000;
+            const z = -Math.random() * 2000;
+            starVertices.push(x, y, z);
+        }
+
+        starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+        const stars = new THREE.Points(starGeometry, starMaterial);
+        scene.add(stars);
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+
+        // Show the body element and start animation after resources load
+        window.onload = function() {
+            document.body.style.display = "block";
+            animate();
+        };
+    </script>
+
+    <script>
+        function fetchAndShow() {
+            const query = encodeURIComponent(document.getElementById("search-input").value);
+            const url = `https://api.themoviedb.org/3/search/movie?api_key=b6b677eb7d4ec17f700e3d4dfc31d005&query=${query}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const results = data.results;
+                    const movieResults = document.getElementById("movieResults");
+                    movieResults.innerHTML = "";
+
+                    results.forEach(result => {
+                        const resultElem = document.createElement("div");
+                        resultElem.classList.add("movieResult");
+                        resultElem.setAttribute("IMDB", result.id);
+
+                        const imageAndInfo = `
+                            <div onclick="setUrl(this)">
+                                <img src="https://image.tmdb.org/t/p/w500${result.poster_path}" alt="${result.title}">
+                                <h3>${result.title}</h3>
+                                <p>${result.release_date}</p>
+                            </div>
+                        `;
+                        resultElem.innerHTML = imageAndInfo;
+                        movieResults.appendChild(resultElem);
+                    });
+                })
+                .catch(error => console.error('Error fetching and displaying movie data:', error));
+        }
+
+        function closePopUpAds() {
+            let elements = document.getElementsByTagName("*");
+            for (let element of elements) {
+                if (element.style.position === "absolute" && element.style.right === "0" && element.style.top === "0" && element.textContent === "X") {
+                    element.click();
+                    break;
+                }
+            }
+        }
+
+        function setUrl(element) {
+            const imdbId = element.parentElement.getAttribute("IMDB");
+            const url = `https://player.smashy.stream/movie/${imdbId}`;
+            const iframe = document.createElement("iframe");
+            iframe.setAttribute("src", url);
+            iframe.style.border = "none";
+            iframe.setAttribute("allowfullscreen", "");
+
+            const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            const screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            const maxWidth = screenWidth;
+            const maxHeight = screenHeight * 0.8;
+            const aspectRatio = 16 / 9;
+
+            let playerWidth, playerHeight;
+            if ((maxWidth / maxHeight) > aspectRatio) {
+                // Height is the constraining factor
+                playerHeight = maxHeight;
+                playerWidth = playerHeight * aspectRatio;
+            } else {
+                playerWidth = maxWidth;
+                playerHeight = playerWidth / aspectRatio;
+            }
+
+            iframe.style.width = playerWidth + "px";
+            iframe.style.height = playerHeight + "px";
+
+            const body = document.querySelector("body");
+            body.innerHTML = "";
+            body.appendChild(iframe);
+
+            // Call the function to close pop-up ads every second
+            setInterval(closePopUpAds, 1000);
+        }
+    </script>
+</body>
+  </html>
+  
