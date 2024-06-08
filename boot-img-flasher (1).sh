@@ -29,42 +29,40 @@ print_banner() {
         local clean_text=$(echo -e "$text" | sed 's/\x1b\[[0-9;]*m//g')
         local padding_width=$(( (terminal_width - ${#clean_text}) / 2 ))
         printf "%*s%b%*s\n" $padding_width "" "$text" $padding_width "" && echo
-    }
+     }
 
-    # Check if 'figlet' is available. If it is so, assume that script likely running in Termux
+        # Check if 'figlet' is available. If it is so, assume that script likely running in Termux
 	# or a similar environment. and in this case use 'figlet' to display our ASCII art banner.
 	# with the addition of '-c' and '-t' option, to ensure proper alignment.
-    
 	if command -v figlet > /dev/null; then
         figlet -ct "$banner_text"
             center_text "${BLUE}$description${NC}"
             center_text "${GREEN}$author${NC}"
             center_text "\033[3mGit Source: $git_source${NC}"
-    else
-       # Fallback to default ASCII banner for magisk!
-        echo    "   _____                                                     _____"
-        echo    "  ( ___ )                                                   ( ___ )"
-        echo    "   |   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|   |"
-        echo    "   |   |    ____                 _     _                     |   |"
-        echo    "   |   |   | __ )   ___    ___  | |_  (_) _ __ ___    __ _   |   |" 
-        echo    "   |   |   |  _ \  / _ \  / _ \ | __| | || '_   _ \  / _  |  |   |" 
-        echo    "   |   |   | |_) || (_) || (_) || |_  | || | | | | || (_| |  |   |" 
-        echo    "   |   |   |____/  \___/  \___/  \__| |_||_| |_| |_| \__, |  |   |" 
-        echo    "   |   |    _____  _              _                  |___/   |   |"
-        echo    "   |   |   |  ___|| |  __ _  ___ | |__    ___  _ __          |   |"
-        echo    "   |   |   | |_   | | / _  |/ __|| '_ \  / _ \| '__|         |   |"
-        echo    "   |   |   |  _|  | || (_| |\__ \| | | ||  __/| |            |   |"
-        echo    "   |   |   |_|    |_| \__,_||___/|_| |_| \___||_|            |   |"
-        echo    "   |   |                                                     |   |"
-        echo    "   |___|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|___|"
-        echo    "  (_____)                                                   (_____)"
-        echo -e "\n"
-          echo -e "  $description\n"
-          echo -e "  $author\n"
-          echo -e "  Git Source: $git_source\n"
-     fi
+        else
+            # Fallback to default ASCII banner for magisk!
+            echo    "   _____                                                     _____"
+            echo    "  ( ___ )                                                   ( ___ )"
+            echo    "   |   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|   |"
+            echo    "   |   |    ____                 _     _                     |   |"
+            echo    "   |   |   | __ )   ___    ___  | |_  (_) _ __ ___    __ _   |   |" 
+            echo    "   |   |   |  _ \  / _ \  / _ \ | __| | || '_   _ \  / _  |  |   |" 
+            echo    "   |   |   | |_) || (_) || (_) || |_  | || | | | | || (_| |  |   |" 
+            echo    "   |   |   |____/  \___/  \___/  \__| |_||_| |_| |_| \__, |  |   |" 
+            echo    "   |   |    _____  _              _                  |___/   |   |"
+            echo    "   |   |   |  ___|| |  __ _  ___ | |__    ___  _ __          |   |"
+            echo    "   |   |   | |_   | | / _  |/ __|| '_ \  / _ \| '__|         |   |"
+            echo    "   |   |   |  _|  | || (_| |\__ \| | | ||  __/| |            |   |"
+            echo    "   |   |   |_|    |_| \__,_||___/|_| |_| \___||_|            |   |"
+            echo    "   |   |                                                     |   |"
+            echo    "   |___|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|___|"
+            echo    "  (_____)                                                   (_____)"
+              echo -e "\n"
+              echo -e "  $description\n"
+              echo -e "  $author\n"
+              echo -e "  Git Source: $git_source\n"
+      fi
 }
-
 
 require_new_magisk() {
     ui_print "*******************************"
